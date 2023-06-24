@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const { Streamer, streamerValidationSchema } = require("../Controllers/streamers");
+const { Streamer, validate } = require("../Models/Streamer");
 
 router.post("/", async (req, res) => {
   try {
-    const { error } = streamerValidationSchema.validate(req.body);
+    const { error } = validate(req.body);
     if (error) {
       return res.status(400).json({ error: error.details[0].message });
     }
@@ -11,9 +11,9 @@ router.post("/", async (req, res) => {
     if (existingStreamer) {
       return res.status(409).json({ message: "Streamer with the given name already exists!" });
     }
-
     await new Streamer({ ...req.body }).save();
-    res.status(201).json({ message: "Streamer created successfully" });
+    const createdStreamer = await Streamer.findOne({ name: req.body.name });
+    res.status(201).json({ message: "Streamer created successfully", streamer: createdStreamer });    
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -53,7 +53,6 @@ router.put("/:streamerId/vote", async (req, res) => {
       if (!streamer) {
         return res.status(404).json({ error: "Streamer with specified ID not found." });
       }
-  
       if (voteType === "upvote") {
         streamer.upvotes++;
       } else if (voteType === "downvote") {
@@ -68,6 +67,5 @@ router.put("/:streamerId/vote", async (req, res) => {
       res.status(500).json({ error: "There was an error while voting for the streamer." });
     }
   });
-  
 
 module.exports = router;

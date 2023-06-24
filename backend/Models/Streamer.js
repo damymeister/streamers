@@ -11,10 +11,12 @@ downvotes: { type: Number, default: 0 },
 
 const Streamer = mongoose.model("Streamer", streamerSchema)
 
-const streamerValidationSchema = Joi.object({
-    name: Joi.string().required(),
-    platform: Joi.string().required(),
-    description: Joi.string().required(),
-  });
-
-module.exports = {Streamer,streamerValidationSchema};
+const validate = (data) => {
+  const schema = Joi.object({
+      name: Joi.string().required().label("name"),
+      platform: Joi.string().required().label("platform"),
+      description: Joi.string().required().label("description"),
+  })
+return schema.validate(data)
+  }
+module.exports = {Streamer, validate};

@@ -1,0 +1,74 @@
+.FormContainer {
+  width: 80%;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.FormContainer h1 {
+  color: #296073;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.form-line{
+  width:100%;
+}
+.FormContainer label {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: grey;
+}
+
+.FormContainer input,
+.FormContainer select,
+.FormContainer textarea {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.FormContainer textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.FormContainer .error_msg {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.FormContainer .success_msg {
+  color: green;
+  margin-bottom: 10px;
+}
+
+.FormContainer button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #296073;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.FormContainer button[type="submit"]:hover {
+  opacity: 0.9;
+}
