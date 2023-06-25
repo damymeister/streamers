@@ -1,4 +1,4 @@
-/* Global styles */
+
 @import '~@fortawesome/fontawesome-free/css/all.css';
 body {
 	padding: 0;
@@ -40,36 +40,6 @@ body {
     overflow: auto;
     position: relative;
   }
-  .container {
-	max-width: 80%;
-	margin: 0 auto;
-	padding: 20px;
-	justify-content: center;
-	align-items: center;
-  }
-  
-  .header {
-	align-items: center;
-	margin-bottom: 2rem;
-  }
-  
-  .add-streamer-btn {
-	padding: 10px 20px;
-	background-color: #296073;
-	color: #fff;
-	border: none;
-	border-radius: 4px;
-	font-weight: bold;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
-	font-size: 1rem;
-  }
-  
-  .add-streamer-btn:hover {
-	background-color: #fff;
-	color: #296073;
-  }
-
   .close {
     position: absolute;
     top: 10px;
@@ -78,61 +48,35 @@ body {
     font-weight: bold;
     cursor: pointer;
   }
-  .streamer-item {
-	background-color: #fff;
-	border-radius: 4px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	 color:#296073;
+
+  .container {
+	max-width: 80%;
+	margin: 0 auto;
+	padding: 20px;
+	justify-content: center;
+	align-items: center;
+  display: flex;
+  flex-direction: column;
   }
-  .streamer-action {
-	background-color: #296073;
+  .header {
+	align-items: center;
+	margin-bottom: 2rem;
+  
+  }
+  .add-streamer-btn {
+	padding: 10px 20px;
+	background-color: #366d80;
 	color: #fff;
+	border: none;
 	border-radius: 4px;
 	font-weight: bold;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
-	margin-left: 1rem;
-	margin-right: 1rem;
-	text-decoration: none;
-	padding:10px;
+	font-size: 1rem;
   }
-  
-  .streamer-action:hover {
-	opacity:0.8;
+  .add-streamer-btn:hover {
+	background-color: #fff;
+	color: #296073;
   }
 
-  .table-container {
-	overflow-x: auto;
-  }
   
-  .streamers-table {
-	width: 100%;
-  }
-  
-  .streamers-table th,
-  .streamers-table td {
-	padding: 10px;
-	white-space: nowrap;
-  }
-  .streamers-table button{
-	margin-left: 1rem;
-	margin-right: 1rem;
-  }
-  .actions-items{
-	padding:20px;
-  }
-
-.streamers-list-container{
-	background-color:#ccc;
-	padding:30px;
-	border-radius: 5px;
-	color:#296073;
-	font-weight: bold;
-}
-.name-cell {
-	width: 25%;
-  }
-  
-  .actions-cell {
-	width: 70%;
-  }

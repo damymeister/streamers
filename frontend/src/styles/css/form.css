@@ -18,7 +18,7 @@
   line-height: 1.2;
 }
 
-.form {
+.FormContainer form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,7 +47,7 @@
 
 .FormContainer textarea {
   resize: vertical;
-  height: 100px;
+  min-height: 100px;
 }
 
 .FormContainer .error_msg {

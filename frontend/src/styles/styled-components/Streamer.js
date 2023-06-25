@@ -11,7 +11,7 @@ margin-top:2rem;
 width:100%;
 `;
 const StreamerMain = styled.div`
-width:30%;
+width:40%;
 box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 border: 2px solid #F3BF99;
 border-radius:10px;

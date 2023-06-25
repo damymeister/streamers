@@ -61,7 +61,7 @@ export default function StreamerSubmissionForm(props) {
     <div className="FormContainer">
       <h1>ADD STREAMER</h1>
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-        <Form className="form">
+        <Form>
           <div className="form-line">
             <label htmlFor="name">Name</label>
             <Field type="text" id="name" name="name" maxLength={MAX_NAME_LENGTH} />
@@ -104,7 +104,7 @@ export default function StreamerSubmissionForm(props) {
           {error ? (
             <div className="error_msg">{error}</div>
           ) : (
-            resMsg !== "" && <div className="error_msg">{resMsg}</div>
+            resMsg !== "" && <div className="success_msg">{resMsg}</div>
           )}
           <button type="submit" onClick={handleFormSubmit}>
             Submit

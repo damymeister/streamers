@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 export default function Home(props) {
+  const navigate = useNavigate();
   const thumbClicked = async (action, id) => {
     try {
       const streamerId = id;
@@ -16,9 +16,11 @@ export default function Home(props) {
       }
       const url = `http://localhost:5000/streamers/${streamerId}/vote`;
       const response = await axios.put(url, { voteType });
+      
       const streamerIndex = props.allStreamers.findIndex(
         (streamer) => streamer._id === streamerId
       )
+
       if (streamerIndex !== -1) {
         const updatedStreamers = [...props.allStreamers];
         const updatedStreamer = {
@@ -33,10 +35,13 @@ export default function Home(props) {
       console.log(error);
     }
   };
+  const streamerDetails = (id) =>{
+    navigate(`/streamer/${id}`);
+  }
 
   return (
     <div className="streamers-list-container">
-      <h2>Streamer List</h2>
+      <h2>Streamers List</h2>
       <table className="streamers-table">
         <thead>
           <tr>
@@ -51,19 +56,17 @@ export default function Home(props) {
           {props.allStreamers.map((streamer) => (
             <tr className="streamer-item" key={streamer._id}>
               <td className="name-cell">{streamer.name}</td>
-              <td className="vote-cell">{streamer.platform}</td>
+              <td className="platform-cell">{streamer.platform}</td>
               <td className="vote-cell">{streamer.upvotes}</td>
               <td className="vote-cell">{streamer.downvotes}</td>
               <td className="actions-cell">
-                <button type="button" onClick={() => thumbClicked("thumb-up", streamer._id)}>
+                <button type="button" className='streamer-action' onClick={() => thumbClicked("thumb-up", streamer._id)}>
                   <img className="thumb" src="/images/thumb-up.png" alt="Thumb Up" />
                 </button>
-                <button type="button" onClick={() => thumbClicked("thumb-down", streamer._id)}>
+                <button type="button" className='streamer-action' onClick={() => thumbClicked("thumb-down", streamer._id)}>
                   <img className="thumb" src="/images/thumb-down.png" alt="Thumb down" />
                 </button>
-                <Link to={`/streamer/${streamer._id}`} className="streamer-action">
-                  Go to Streamer
-                </Link>
+                <button type="button"  className="streamer-action" onClick={()=>streamerDetails(streamer._id)}>Details</button>
               </td>
             </tr>
           ))}

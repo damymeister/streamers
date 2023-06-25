@@ -1,0 +1,68 @@
+.streamer-item {
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	color: #296073;
+	width: 100%;
+}
+
+.streamer-action {
+	background-color: #296073;
+	color: #fff;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	margin-left: 1rem;
+	margin-right: 1rem;
+	padding: 5px;
+    font-weight: bold;
+}
+
+.streamer-action:hover {
+	opacity: 0.8;
+}
+
+.streamers-table {
+	width: 100%;
+	overflow-x: auto;
+}
+
+.name-cell {
+	width: 20%;
+}
+
+.platform-cell {
+	width: 15%;
+}
+
+.vote-cell {
+	width: 15%;
+}
+
+.actions-cell {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.streamers-list-container {
+	background-color: #ccc;
+	padding: 15px;
+	border-radius: 5px;
+	color: #296073;
+	font-weight: bold;
+	overflow-x: auto;
+	width: 100%;
+	max-height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.streamers-table th,
+.streamers-table td {
+	padding: 8px;
+	text-align: center;
+}
+.streamers-table td {
+	border:1px solid #296073;
+}
+
