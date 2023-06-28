@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 interface StreamerFormValues {
@@ -41,11 +41,7 @@ export default function StreamerSubmissionForm(props) {
       const updatedAllStramers  = [...props.allStreamers, res.streamer];
       props.setAllStreamers(updatedAllStramers);
       setresMsg(res.message);
-      setInitialValues({
-        name: "",
-        platform: "",
-        description: "",
-      });
+      setIsSubmitted(true);
     } catch (error) {
       if (error.response && error.response.status >= 400 && error.response.status <= 500) {
         setError(error.response.data.message);
@@ -57,10 +53,22 @@ export default function StreamerSubmissionForm(props) {
     setIsSubmitted(true);
   };
 
+  useEffect(() => {
+    if (isSubmitted) {
+      setInitialValues({
+        name: "",
+        platform: "",
+        description: "",
+      });
+      setIsSubmitted(false);
+    }
+  }, [isSubmitted]);
+  
+
   return (
     <div className="FormContainer">
       <h1>ADD STREAMER</h1>
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit} enableReinitialize={true}>
         <Form>
           <div className="form-line">
             <label htmlFor="name">Name</label>

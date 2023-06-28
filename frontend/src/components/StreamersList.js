@@ -2,6 +2,7 @@ import React from 'react';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 export default function Home(props) {
+
   const navigate = useNavigate();
   const thumbClicked = async (action, id) => {
     try {
@@ -72,6 +73,14 @@ export default function Home(props) {
           ))}
         </tbody>
       </table>
+      <div className='page-navigation'>
+        {props.currentPage > 1 && (
+        <button className='page-button' onClick={()=>props.setcurrentPage(props.currentPage - 1)}>{props.currentPage - 1}</button>)}
+        <p>{props.currentPage}</p>
+        {props.currentPage < Math.ceil(props.totalStreamersCount / props.streamersPerPage) && (
+        <button className ='page-button' onClick={()=>props.setcurrentPage(props.currentPage + 1)}>{props.currentPage + 1}</button>
+        )}
+      </div>
     </div>
   );
 }

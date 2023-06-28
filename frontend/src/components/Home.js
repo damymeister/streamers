@@ -6,13 +6,16 @@ export default function Home() {
   const [allStreamers, setAllStreamers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [streamersPerPage, setStreamersPerPage] = useState(4);
+  const [currentPage, setcurrentPage] = useState(1);
+  const [totalStreamersCount, setTotalStreamersCount] = useState(0);
   const fetchAllStreamers = async () => {
     try {
       setIsLoading(true);
-      const url = `http://localhost:5000/streamers`;
+      const url = `http://localhost:5000/streamers?page=${currentPage}&pageSize=${streamersPerPage}`;
       const { data } = await axios.get(url);
-      setAllStreamers(data);
+      setAllStreamers(data.streamers);
+      setTotalStreamersCount(data.totalStreamersCount);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -22,7 +25,14 @@ export default function Home() {
 
   useEffect(() => {
     fetchAllStreamers();
-  }, []);
+  }, [currentPage]);
+
+  useEffect(() => {
+    if(allStreamers.length > streamersPerPage){
+      setcurrentPage(currentPage+1);
+    }
+  }, [allStreamers]);
+
 
   const handleAddStreamerClick = () => {
     setIsModalOpen(true);
@@ -46,14 +56,14 @@ export default function Home() {
             <button className="close" onClick={handleCloseModal}>
             &times;
             </button>
-            <StreamerAddForm allStreamers={allStreamers} setAllStreamers = {setAllStreamers} />
+            <StreamerAddForm allStreamers={allStreamers} setAllStreamers = {setAllStreamers} setcurrentPage = {setcurrentPage}  streamersPerPage = {streamersPerPage}/>
           </div>
         </div>
       )}
     {isLoading ? (
       <div className="loader"></div>
     ) : allStreamers.length > 0 ? (
-      <StreamersList allStreamers={allStreamers} setAllStreamers={setAllStreamers} />
+      <StreamersList allStreamers={allStreamers} setAllStreamers={setAllStreamers} currentPage={currentPage} setcurrentPage = {setcurrentPage} totalStreamersCount = {totalStreamersCount} streamersPerPage={streamersPerPage}/>
     ) : (
       <h1>Database is empty...</h1>
     )}

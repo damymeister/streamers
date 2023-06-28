@@ -22,11 +22,18 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
     try {
-      const streamers = await Streamer.find();
+      const { page, pageSize } = req.query;
+      const pageNumber = parseInt(page) || 1;
+      const streamersPerPage = parseInt(pageSize) || 4;
+      const skip = (pageNumber - 1) * streamersPerPage;
+      const streamers = await Streamer.find()
+      .skip(skip)
+      .limit(streamersPerPage);
+      const totalStreamersCount = await Streamer.countDocuments(); 
       if (!streamers.length) {
         return res.status(404).send({ message: "Database is empty" });
       }
-      res.json(streamers);
+      res.json({streamers, totalStreamersCount});
     } catch (error) {
       res.status(500).json({ error: "Unable to fetch streamers from the database." });
     }
