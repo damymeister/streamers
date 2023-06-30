@@ -42,6 +42,11 @@ export default function StreamerSubmissionForm(props) {
       props.setAllStreamers(updatedAllStramers);
       setresMsg(res.message);
       setIsSubmitted(true);
+      setInitialValues({
+        name: "",
+        platform: "",
+        description: "",
+      });
     } catch (error) {
       if (error.response && error.response.status >= 400 && error.response.status <= 500) {
         setError(error.response.data.message);
@@ -52,19 +57,7 @@ export default function StreamerSubmissionForm(props) {
   const handleFormSubmit = () => {
     setIsSubmitted(true);
   };
-
-  useEffect(() => {
-    if (isSubmitted) {
-      setInitialValues({
-        name: "",
-        platform: "",
-        description: "",
-      });
-      setIsSubmitted(false);
-    }
-  }, [isSubmitted]);
   
-
   return (
     <div className="FormContainer">
       <h1>ADD STREAMER</h1>

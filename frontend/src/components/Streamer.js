@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { StyledImage,StreamerMain, StreamerDiv , H1, H4} from "../styles/styled-components/Streamer";
+import { StyledImage,StreamerMain, StreamerDiv , H1, H4} from "../styles/styled-components/StyledStreamer";
 export default function Streamer(){
     const [streamerData, setStreamerData] = useState(null)
     const {id} = useParams();

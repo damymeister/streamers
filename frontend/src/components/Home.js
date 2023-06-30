@@ -61,7 +61,7 @@ export default function Home() {
         </div>
       )}
     {isLoading ? (
-      <div className="loader"></div>
+      <div className="loader">Loading....</div>
     ) : allStreamers.length > 0 ? (
       <StreamersList allStreamers={allStreamers} setAllStreamers={setAllStreamers} currentPage={currentPage} setcurrentPage = {setcurrentPage} totalStreamersCount = {totalStreamersCount} streamersPerPage={streamersPerPage}/>
     ) : (
