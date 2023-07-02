@@ -10,7 +10,7 @@ export default function Streamer(){
     useEffect(() => {
         const fetchStreamerData = async () => {
           try {
-            const url = `http://localhost:5000/streamers/${id}`;
+            const url = `http://localhost:5000/streamer/${id}`;
             const { data } = await axios.get(url);
             setStreamerData(data);
           } catch (error) {
@@ -22,10 +22,10 @@ export default function Streamer(){
       
       return (
       <StreamerDiv>
-        <Link to ="/"><span className="arrow-back"><i class="fas fa-arrow-left"></i></span></Link>
+        <Link to ="/"><span className="arrow-back"><i className="fas fa-arrow-left"></i></span></Link>
           {streamerData ? (
             <StreamerMain>
-              <StyledImage className="photo" src ="https://www.tekstowo.pl/miniatura_teledysku,MtO0L-EbGtk.jpg"></StyledImage>
+              <StyledImage className="photo" src ="https://www.tekstowo.pl/miniatura_teledysku,MtO0L-EbGtk.jpg" alt="Can not load photo"></StyledImage>
               <H1>{streamerData.name}</H1>
               <H4>Platform:</H4> <p>{streamerData.platform}</p>
               <H4>Description:</H4><p>{streamerData.description}</p>
