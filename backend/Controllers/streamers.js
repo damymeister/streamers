@@ -39,7 +39,7 @@ router.get("/", async (req, res) => {
     }
   });
   
-router.put("/:streamerId/vote", async (req, res) => {
+router.patch("/:streamerId/vote", async (req, res) => {
     try {
       const { streamerId } = req.params;
       const { voteType } = req.body;

@@ -29,7 +29,7 @@ export default function Home(props) {
         return;
       }
       const url = `http://localhost:5000/streamers/${streamerId}/vote`;
-      const response = await axios.put(url, { voteType });
+      const response = await axios.patch(url, { voteType });
 
       const streamerIndex = props.allStreamers.findIndex(
         (streamer) => streamer._id === streamerId
